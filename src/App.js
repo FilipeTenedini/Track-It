@@ -9,11 +9,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" to={ <LoginPage />} />
-        <Route path="/cadastro" to={<RegisterPage />} />
-        <Route path="/habitos" to={<HabitsPage />} />
-        <Route path="/hoje" to={<TodayPage />} />
-        <Route path="/historico" to={<HistoricPage />} />
+        <Route exact path="/" element={ <LoginPage />} />
+        <Route path="/cadastro" element={<RegisterPage />} />
+        <Route path="/habitos" element={<HabitsPage />} />
+        <Route path="/hoje" element={<TodayPage />} />
+        <Route path="/historico" element={<HistoricPage />} />
       </Routes>
     </BrowserRouter>
   );
