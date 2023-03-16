@@ -1,24 +1,31 @@
+import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import Formulary from "../../components/Formulary";
 import LogoArea from "../../components/LogoArea";
 import Button from "../../components/Button";
+import Loader from "../../components/Loader/Loader";
 import { BASE_URL } from "../../api/url";
-import axios from "axios";
-import { useState } from "react";
 
 export default function LoginPage() {
   const [loginForm, setLoginForm] = useState({email: "", password: ""});
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClick = () => navigate("/cadastro");
 
   const handleSignIn = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post(`${BASE_URL}/auth/login`, loginForm)
       .then(() => navigate("/hoje"))
-      .catch(err => alert(err.response.data.message))
+      .catch(err => {
+        alert(err.response.data.message);
+        setLoading(false);
+      })
   }
 
   const handleUpdateForm = (e) => setLoginForm({...loginForm, [e.target.name]: e.target.value});
@@ -45,7 +52,7 @@ export default function LoginPage() {
         value={loginForm.password}
         onChange={handleUpdateForm}
         />
-        <Button text="Entrar" />
+        <Button disabled={loading} text={loading ? <Loader /> : "Entrar"} />
       </Formulary>
     </Container>
   );

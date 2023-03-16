@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { c } from "../../constants/colors";
+
 export const MyButton = styled.button`
     width: 80%;
     max-width: 303px;
@@ -8,7 +9,10 @@ export const MyButton = styled.button`
     border-radius: 5px;
     outline: none;
     border: none;
-    cursor: pointer;
+    cursor: ${({disabled}) => disabled ? "cursor" : "pointer"};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     color: ${c.lightColor};
     font-size: 21px;

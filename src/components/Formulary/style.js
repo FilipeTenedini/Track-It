@@ -28,4 +28,5 @@ export const Register = styled.a`
         text-decoration: underline;
         color: ${c.lightImp};
         cursor: pointer;
+        margin-bottom: 35px;
 `;

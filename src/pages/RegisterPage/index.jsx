@@ -1,24 +1,31 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import Formulary from "../../components/Formulary";
 import LogoArea from "../../components/LogoArea";
 import Button from "../../components/Button";
+import Loader from "../../components/Loader/Loader";
 import { BASE_URL } from "../../api/url";
-import axios from "axios";
 
 export default function RegisterPage() { 
   const [registerForm, setRegisterForm] = useState({email: '', name: '', image: '', password: ''});
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClick = () => navigate("/");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     axios
       .post(`${BASE_URL}/auth/sign-up`, registerForm)
       .then(() => navigate("/"))
-      .catch(err => err.response.data.message);
+      .catch(err => {
+        alert(err.response.data.message);
+        setLoading(false);
+      })
   }
 
   const handleUpdateForm = (e) => setRegisterForm({...registerForm, [e.target.name]: e.target.value});
@@ -56,7 +63,7 @@ export default function RegisterPage() {
         value={registerForm.image}
         onChange={handleUpdateForm}
         />
-        <Button text="Cadastrar" />
+        <Button disabled={loading} text={loading ? <Loader /> : "Cadastrar"} />
       </Formulary>
     </Container>
   );
