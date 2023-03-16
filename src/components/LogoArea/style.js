@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const LogoSpace = styled.header`
     width: 100%;
+    height: 300px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    img{
+        width: 180px;
+        height: 180px;
+    }
 `;
