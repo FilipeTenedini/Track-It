@@ -1,9 +1,9 @@
 import { FormArea, Register } from "./style";
 
-export default function Formulary({text, clickFn, children}) {
+export default function Formulary({text, clickFn, submit, children}) {
     return (
       <>
-        <FormArea>
+        <FormArea onSubmit={submit}>
           {children}
         </FormArea>
         <Register onClick={clickFn}>{text}</Register>
