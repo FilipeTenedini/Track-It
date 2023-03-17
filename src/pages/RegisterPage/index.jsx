@@ -33,13 +33,19 @@ export default function RegisterPage() {
   return (
     <Container>
       <LogoArea />
-      <Formulary text="Já tem uma conta? Faça login!" clickFn={handleClick} submit={handleSubmit}>
+      <Formulary 
+      text="Já tem uma conta? Faça login!" c
+      lickFn={handleClick} 
+      submit={handleSubmit} 
+      test="login-link"
+      >
         <input 
         type="email"
         placeholder="email"
         name={"email"}
         value={registerForm.email}
         onChange={handleUpdateForm}
+        data-test="email-input"
         />
         
         <input 
@@ -48,6 +54,7 @@ export default function RegisterPage() {
         name={"password"}
         value={registerForm.password}
         onChange={handleUpdateForm}
+        data-test="password-input"
         />
         <input 
         type="text"
@@ -55,6 +62,7 @@ export default function RegisterPage() {
         name={"name"}
         value={registerForm.name}
         onChange={handleUpdateForm}
+        data-test="user-name-input"
         />
         <input 
         type="url"
@@ -62,8 +70,13 @@ export default function RegisterPage() {
         name={"image"}
         value={registerForm.image}
         onChange={handleUpdateForm}
+        data-test="user-image-input"
         />
-        <Button disabled={loading} text={loading ? <Loader /> : "Cadastrar"} />
+        <Button
+        disabled={loading}
+        text={loading ? <Loader /> : "Cadastrar"}
+        test="signup-btn"
+        />
       </Formulary>
     </Container>
   );

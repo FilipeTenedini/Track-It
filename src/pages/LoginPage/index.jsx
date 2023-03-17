@@ -37,6 +37,7 @@ export default function LoginPage() {
       text="Não tem uma conta? Cadastre-se!"
       clickFn={handleClick}
       submit={handleSignIn}
+      test="signup-link"
       >
         <input 
         type="email"
@@ -44,6 +45,7 @@ export default function LoginPage() {
         value={loginForm.email}
         name="email"
         onChange={handleUpdateForm}
+        data-test="email-input"
         />
         <input 
         type="password"
@@ -51,8 +53,13 @@ export default function LoginPage() {
         name="password"
         value={loginForm.password}
         onChange={handleUpdateForm}
+        data-test="password-input"
         />
-        <Button disabled={loading} text={loading ? <Loader /> : "Entrar"} />
+        <Button 
+        disabled={loading}
+        text={loading ? <Loader /> : "Entrar"}
+        test="login-btn"
+        />
       </Formulary>
     </Container>
   );
