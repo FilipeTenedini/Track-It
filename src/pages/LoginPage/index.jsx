@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./style";
 import Formulary from "../../components/Formulary";
@@ -7,12 +7,13 @@ import LogoArea from "../../components/LogoArea";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader/Loader";
 import { BASE_URL } from "../../api/url";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function LoginPage() {
   const [loginForm, setLoginForm] = useState({email: "", password: ""});
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
+  const { setAuth } = useContext(AuthContext);
 
   const handleClick = () => navigate("/cadastro");
 
@@ -21,7 +22,15 @@ export default function LoginPage() {
     setLoading(true);
     axios
       .post(`${BASE_URL}/auth/login`, loginForm)
-      .then(() => navigate("/hoje"))
+      .then(res => {
+        setAuth({
+          name: res.data.name,
+          email: res.data.email,
+          image: res.data.image,
+          token: res.data.token
+        })
+        navigate("/hoje")
+      })
       .catch(err => {
         alert(err.response.data.message);
         setLoading(false);
@@ -45,6 +54,7 @@ export default function LoginPage() {
         value={loginForm.email}
         name="email"
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="email-input"
         />
         <input 
@@ -53,6 +63,7 @@ export default function LoginPage() {
         name="password"
         value={loginForm.password}
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="password-input"
         />
         <Button 

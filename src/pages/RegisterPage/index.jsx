@@ -19,7 +19,7 @@ export default function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    axios
+      axios
       .post(`${BASE_URL}/auth/sign-up`, registerForm)
       .then(() => navigate("/"))
       .catch(err => {
@@ -29,13 +29,13 @@ export default function RegisterPage() {
   }
 
   const handleUpdateForm = (e) => setRegisterForm({...registerForm, [e.target.name]: e.target.value});
-  
+
   return (
     <Container>
       <LogoArea />
       <Formulary 
       text="Já tem uma conta? Faça login!" c
-      lickFn={handleClick} 
+      clickFn={handleClick} 
       submit={handleSubmit} 
       test="login-link"
       >
@@ -45,6 +45,7 @@ export default function RegisterPage() {
         name={"email"}
         value={registerForm.email}
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="email-input"
         />
         
@@ -54,6 +55,7 @@ export default function RegisterPage() {
         name={"password"}
         value={registerForm.password}
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="password-input"
         />
         <input 
@@ -62,6 +64,7 @@ export default function RegisterPage() {
         name={"name"}
         value={registerForm.name}
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="user-name-input"
         />
         <input 
@@ -70,6 +73,7 @@ export default function RegisterPage() {
         name={"image"}
         value={registerForm.image}
         onChange={handleUpdateForm}
+        disabled={loading}
         data-test="user-image-input"
         />
         <Button
