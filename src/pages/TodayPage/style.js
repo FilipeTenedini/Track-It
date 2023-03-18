@@ -4,12 +4,14 @@ import { BsFillCheckSquareFill } from "react-icons/bs"
 
 export const Container = styled.section`
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 140px);
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 70px;
+    margin-bottom: 70px;
     background-color: ${c.midColor};
+    overflow-y: scroll;
 `;
 export const Status = styled.div`
     width: 100%;
@@ -17,8 +19,7 @@ export const Status = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 17px;
-
+    padding: 27px 0 27px 17px;
     h2{
         font-weight: 400;
         font-size: 23px;
@@ -32,6 +33,13 @@ export const Status = styled.div`
         color: ${c.dkColor}
     }
 `;
+export const Content = styled.div`
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 export const CardContainer = styled.article`
     width: 80%;
     max-width: 340px;
@@ -42,6 +50,7 @@ export const CardContainer = styled.article`
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    margin-bottom: 10px;
 `;
 export const CardInfos = styled.div`
     display: flex;

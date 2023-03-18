@@ -16,4 +16,14 @@ export const MyButton = styled.button`
 
     color: ${c.lightColor};
     font-size: 21px;
+    transition: .3s;
+
+        &:hover{
+            /* transform: scale(1.1); */
+            background-color: ${c.darkImp};
+            /* opacity: .9;  */
+        }
+        &:active{
+            background-color: ${c.lightImp}
+        }
 `;
