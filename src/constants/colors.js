@@ -5,5 +5,6 @@ export const c = {
     midColor: "#E5E5E5",
     dkColor: "#BABABA",
     dkTextColor: "#666",
-    cardColor: "#FFF"
+    cardColor: "#FFF",
+    selectedDay: "#CFCFCF"
 }
