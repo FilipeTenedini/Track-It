@@ -6,7 +6,7 @@ import { BASE_URL } from "../../api/url";
 import { HabitFormContainer, DaysContainer, Buttons, CancelButton, SaveButton} from "./style";
 import DayButton from "./DayButton";
 
-export default function AddHabitCard({handleToggleCreating, savedData, setSavedData}){
+export default function AddHabitCard({handleToggleCreating, savedData, setSavedData, setCreating, getHabits}){
     const [selectedDays, setSelectedDays] = useState(savedData.days || []);
     const [habitTitle, setHabitTitle] = useState(savedData.title || "");
     const [isDisabled, setIsDisabled] = useState(false);
@@ -32,6 +32,8 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
                 setSelectedDays([]);
                 setHabitTitle('');
                 setSavedData({});
+                setCreating(false);
+                getHabits();
             })
             .catch(err => alert(err.response.data.message))
             .finally(() => setIsDisabled(false));
@@ -63,6 +65,7 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
                         id={ind}
                         isSelected={selectedDays.includes(ind)}
                         clickFn={(id) => selectDay(id)}
+                        isDisabled={isDisabled}
                     />
                 ))}
             </DaysContainer>

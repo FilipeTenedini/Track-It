@@ -83,7 +83,7 @@ export const DaysContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
 `;
-export const Day = styled.div`
+export const Day = styled.button`
     width: 30px;
     height: 30px;
     display: flex;

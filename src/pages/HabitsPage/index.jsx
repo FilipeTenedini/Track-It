@@ -15,7 +15,7 @@ export default function HabitsPage() {
   const {auth} = useContext(AuthContext);
   const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
 
-  useEffect(() => {
+  const getHabits = () => {
     axios
       .get(`${BASE_URL}/habits`, config)
       .then(res => {
@@ -24,7 +24,9 @@ export default function HabitsPage() {
           : setCreatedHabits(null)
       })
       .catch(err => alert(err.response.data.message));
-  }, []);
+  }
+
+  useEffect(() => getHabits(), []);
 
   const handleToggleCreating = () => setCreating(!creating)
   
@@ -61,6 +63,8 @@ export default function HabitsPage() {
             handleToggleCreating={handleToggleCreating}
             savedData={savedData}
             setSavedData={setSavedData}
+            setCreating={setCreating}
+            getHabits={getHabits}
             />
         }
 
