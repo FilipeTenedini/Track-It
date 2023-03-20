@@ -70,6 +70,9 @@ export const CardInfos = styled.div`
         color: ${c.dkTextColor};
     }
 `;
+export const HabitInfoText = styled.span`
+    color: ${({biggerThan}) => biggerThan ? c.concludedColor : c.dkTextColor};
+`
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
     width: 69px;
     height: 69px;

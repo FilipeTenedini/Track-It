@@ -3,13 +3,18 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ProgbarSpace } from "./style";
 import  { c } from "../../constants/colors";
+import { ConcludedsContext } from '../../context/ConcludedsContext';
+import { useContext } from 'react';
 
 export default function ProgressBar(){
+    const { percentConcludeds } = useContext(ConcludedsContext);
+    
+
     return (
         <ProgbarSpace>
             <Link to={"/hoje"}>
                 <CircularProgressbar 
-                    value={10}
+                    value={percentConcludeds === 0 ? 0 : percentConcludeds}
                     text="Hoje"
                     background
                     backgroundPadding={6}

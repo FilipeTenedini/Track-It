@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { ConcludedsContext } from "../../context/ConcludedsContext";
 import { BASE_URL } from "../../api/url";
 import { Container, Content, Status, Text } from "./style";
 import Card from "./Card";
@@ -11,6 +12,8 @@ export default function TodayPage() {
   const [ habits, setHabits ] = useState([]);
   const [concludeds, setConcludeds] = useState(0);
   const { auth } = useContext(AuthContext);
+  const { setPercentConcludeds } = useContext(ConcludedsContext);
+
   const date = new Date();
 
   useEffect(() => {
@@ -30,6 +33,8 @@ export default function TodayPage() {
       .catch(err => alert(err.response.data.message));
   }, [auth]);
 
+  useEffect(() => setPercentConcludeds((concludeds / habits.length) * 100), [concludeds])
+
   const returnDay = () => {
     switch (date.getDay()){
       case 0:
@@ -47,7 +52,7 @@ export default function TodayPage() {
       case 6:
         return 'Sábado';
       default:
-        return "Erro ao carregar o dia."
+        return "Erro ao carregar o dia.";
     }
   }
   return (
@@ -70,7 +75,7 @@ export default function TodayPage() {
               highestSequence={item.highestSequence}
               setConcludeds={setConcludeds}
               concludeds={concludeds}
-              />
+            />
           ))}
         </Content>
       </Container>
