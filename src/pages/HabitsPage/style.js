@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MdAddBox } from "react-icons/md"
+import { MdAddBox } from "react-icons/md";
+import { BsTrash3 } from "react-icons/bs";
 import { c } from "../../constants/colors";
 
 export const Container = styled.section`
@@ -144,4 +145,41 @@ export const SaveButton = styled.button`
     &:active{
         background-color: ${c.lightImp};
     }
+`;
+
+export const HabitArea = styled.div`
+    width: 340px;
+    height: 90px;
+    border-radius: 5px;
+    background-color: ${c.cardColor};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 29px;
+    position: relative;
+`;
+export const TextArea = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    justify-content: center;
+    p{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        color: ${c.dkTextColor};
+        margin-bottom: 8px;
+    }
+`;
+export const PlanDayButton = styled.div`
+
+`
+export const TrashIcon = styled(BsTrash3)`
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
 `;

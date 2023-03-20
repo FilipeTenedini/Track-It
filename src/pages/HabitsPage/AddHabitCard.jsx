@@ -6,16 +6,16 @@ import { BASE_URL } from "../../api/url";
 import { HabitFormContainer, DaysContainer, Buttons, CancelButton, SaveButton} from "./style";
 import DayButton from "./DayButton";
 
-export default function AddHabitForm(){
-    const [selectedDays, setSelectedDays] = useState([]);
-    const [habitTitle, setHabitTitle] = useState("");
+export default function AddHabitCard({handleToggleCreating, savedData, setSavedData}){
+    const [selectedDays, setSelectedDays] = useState(savedData.days || []);
+    const [habitTitle, setHabitTitle] = useState(savedData.title || "");
     const [isDisabled, setIsDisabled] = useState(false);
     const {auth} = useContext(AuthContext);
 
     const selectDay = (id) => {
         selectedDays.includes(id)
-        ? setSelectedDays((prevState) => prevState.filter(item => item !== id))
-        : setSelectedDays((prevState) => Array.from(new Set([...prevState, id])))
+            ? setSelectedDays((prevState) => prevState.filter(item => item !== id))
+            : setSelectedDays((prevState) => Array.from(new Set([...prevState, id])))
     }
 
     const addHabit = () => {
@@ -28,13 +28,21 @@ export default function AddHabitForm(){
         const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
         axios
             .post(`${BASE_URL}/habits`, obj, config)
-            .then(res => {
-                console.log(res)
+            .then(() => {
                 setSelectedDays([]);
-                setHabitTitle([]);
+                setHabitTitle('');
+                setSavedData({});
             })
             .catch(err => alert(err.response.data.message))
             .finally(() => setIsDisabled(false));
+    }
+
+    const handleCloseForm = () => {
+        setSavedData({
+            title: habitTitle,
+            days: selectedDays
+        })
+        handleToggleCreating();
     }
 
     return(
@@ -58,7 +66,7 @@ export default function AddHabitForm(){
                 ))}
             </DaysContainer>
             <Buttons>
-                <CancelButton disabled={isDisabled}>
+                <CancelButton onClick={handleCloseForm} disabled={isDisabled}>
                     Cancelar
                 </CancelButton>
                 <SaveButton onClick={addHabit} disabled={isDisabled}>

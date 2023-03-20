@@ -26,13 +26,13 @@ export const Status = styled.div`
         line-height: 29px;
         color: ${c.darkImp};
     }
-    p{
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        color: ${c.dkColor}
-    }
 `;
+export const Text = styled.p`
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: ${({didSomething}) => didSomething ? c.concludedColor : c.dkColor };
+`
 export const Content = styled.div`
     width: 100%;
     max-width: 400px;
@@ -70,12 +70,10 @@ export const CardInfos = styled.div`
         color: ${c.dkTextColor};
     }
 `;
-
-
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
     width: 69px;
     height: 69px;
-    color: #EBEBEB;
+    color: ${({done}) => done === true ? c.concludedColor : c.dkColor };
     border: 1px solid #E7E7E7;
     border-radius: 15px;
     cursor: pointer;
