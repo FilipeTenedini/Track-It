@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
       <>
-        <Container>
+        <Container data-test="header">
           <LogoArea src={Logo} alt="TrackIt logo picture" />
           <FotoArea>
             <img src={auth.image} alt="Picture of the user" />

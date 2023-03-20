@@ -60,8 +60,8 @@ export default function TodayPage() {
       <Header />
       <Container>
         <Status>
-            <h2>{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
-            <Text didSomething={concludeds > 0 ? true : false}>
+            <h2 data-test="today">{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
+            <Text didSomething={concludeds > 0 ? true : false} data-test="today-counter">
               {concludeds ? `${concludeds / habits.length * 100}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
             </Text>
         </Status>

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
     return (
-      <Container>
-        <button>
+      <Container data-test="menu">
+        <button data-test="habit-link">
           <Link to={"/habitos"}>
           Hábitos
           </Link>
         </button>
           <ProgressBar />
-        <button>
+        <button data-test="history-link">
           <Link to={"/historico"}>
           Histórico
           </Link>

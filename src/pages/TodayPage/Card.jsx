@@ -31,21 +31,22 @@ export default function Card({id, name, done, currentSequence, highestSequence, 
     }
 
     return (
-        <CardContainer>
+        <CardContainer data-test="today-habit-container">
             <CardInfos>
-                <h3>
+                <h3 data-test="today-habit-name">
                     {name}
                 </h3>
-                <p>
+                <p data-test="today-habit-sequence">
                     Sequência atual: <HabitInfoText biggerThan={currentSequence >= highestSequence}>{currentSequence} dias</HabitInfoText>
                 </p>
-                <p>
+                <p data-test="today-habit-record">
                     Seu recorde: {highestSequence} dias
                 </p>
             </CardInfos>
             <MyCheckBox 
                 done={isConcluded}
-                onClick={() => handleToggleDoneHabit(done)}    
+                onClick={() => handleToggleDoneHabit(done)}
+                data-test="today-habit-check-btn"  
             />
         </CardContainer>
     );

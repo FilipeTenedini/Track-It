@@ -6,7 +6,7 @@ export default function DayButton({char, id, isSelected, clickFn}){
 
     return (
         <>
-        <Day selected={isSelected} onClick={() => selectItem(id)}>
+        <Day selected={isSelected} onClick={() => selectItem(id)} data-test="habit-day">
             {char}
         </Day>
         </>

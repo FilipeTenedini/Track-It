@@ -46,13 +46,14 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
     }
 
     return(
-        <HabitFormContainer>
+        <HabitFormContainer data-test="habit-create-container">
             <input
                 type="text" 
                 placeholder="nome do hábito"
                 value={habitTitle}
                 onChange={(e) => setHabitTitle(e.target.value)}
                 disabled={isDisabled}
+                data-test="habit-name-input"
             />
             <DaysContainer>
                 {initialLetterDays.map((char, ind) => (
@@ -66,10 +67,10 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
                 ))}
             </DaysContainer>
             <Buttons>
-                <CancelButton onClick={handleCloseForm} disabled={isDisabled}>
+                <CancelButton onClick={handleCloseForm} disabled={isDisabled} data-test="habit-create-cancel-btn">
                     Cancelar
                 </CancelButton>
-                <SaveButton onClick={addHabit} disabled={isDisabled}>
+                <SaveButton onClick={addHabit} disabled={isDisabled} data-test="habit-create-save-btn">
                     Salvar
                 </SaveButton>
             </Buttons>

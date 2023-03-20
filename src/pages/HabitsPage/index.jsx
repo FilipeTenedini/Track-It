@@ -59,7 +59,7 @@ export default function HabitsPage() {
       <Container>
       <Status>
             <h2>Meus hábitos</h2>
-            <AddBox onClick={handleToggleCreating}/>
+            <AddBox onClick={handleToggleCreating} data-test="habit-create-btn"/>
       </Status>
         <Content>
         { creating &&

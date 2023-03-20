@@ -24,6 +24,7 @@ export default function ProgressBar(){
                     pathColor: "#fff",
                     trailColor: "transparent",
                     })}
+                    data-test="today-link"
                 />
             </Link>
         </ProgbarSpace>
