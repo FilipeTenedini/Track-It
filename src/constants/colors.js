@@ -4,8 +4,8 @@ export const c = {
     lightColor: "#FFF",
     midColor: "#E5E5E5",
     dkColor: "#BABABA",
-    dkTextColor: "#666",
-    cardColor: "#FFF",
+    dkTextColor: "#666666",
+    cardColor: "#FFFFFF",
     selectedDay: "#CFCFCF",
     concludedColor: "#8FC549"
 }

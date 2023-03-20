@@ -26,14 +26,8 @@ export default function HabitsPage() {
       .catch(err => alert(err.response.data.message));
   }, []);
 
-  const handleToggleCreating = () => {
-    setCreating((prevState) => {
-      prevState === true
-        ? setCreating(false)
-        : setCreating(true)
-    })
-  }
-
+  const handleToggleCreating = () => setCreating(!creating)
+  
   const handleDeleteHabit = (id) => {
     const question = window.confirm('Tem certeza que deseja deletar este hábito?')
     if (question) {
