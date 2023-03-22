@@ -12,20 +12,20 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
     const [isDisabled, setIsDisabled] = useState(false);
     const {auth} = useContext(AuthContext);
 
-    const selectDay = (id) => {
+    function selectDay(id) {
         selectedDays.includes(id)
             ? setSelectedDays((prevState) => prevState.filter(item => item !== id))
-            : setSelectedDays((prevState) => Array.from(new Set([...prevState, id])))
+            : setSelectedDays((prevState) => Array.from(new Set([...prevState, id])));
     }
 
-    const addHabit = () => {
+    function addHabit() {
         setIsDisabled(true);
 
         const obj = {
             name: habitTitle,
             days: selectedDays
-        }
-        const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
+        };
+        const config = { headers: { 'Authorization': `Bearer ${auth.token}` } };
         axios
             .post(`${BASE_URL}/habits`, obj, config)
             .then(() => {
@@ -39,23 +39,22 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
             .finally(() => setIsDisabled(false));
     }
 
-    const handleCloseForm = () => {
+    function handleCloseForm() {
         setSavedData({
             title: habitTitle,
             days: selectedDays
-        })
+        });
         handleToggleCreating();
     }
 
     return(
-        <HabitFormContainer data-test="habit-create-container">
+        <HabitFormContainer>
             <input
                 type="text" 
                 placeholder="nome do hábito"
                 value={habitTitle}
                 onChange={(e) => setHabitTitle(e.target.value)}
                 disabled={isDisabled}
-                data-test="habit-name-input"
             />
             <DaysContainer>
                 {initialLetterDays.map((char, ind) => (
@@ -70,10 +69,10 @@ export default function AddHabitCard({handleToggleCreating, savedData, setSavedD
                 ))}
             </DaysContainer>
             <Buttons>
-                <CancelButton onClick={handleCloseForm} disabled={isDisabled} data-test="habit-create-cancel-btn">
+                <CancelButton onClick={handleCloseForm} disabled={isDisabled}>
                     Cancelar
                 </CancelButton>
-                <SaveButton onClick={addHabit} disabled={isDisabled} data-test="habit-create-save-btn">
+                <SaveButton onClick={addHabit} disabled={isDisabled}>
                     Salvar
                 </SaveButton>
             </Buttons>

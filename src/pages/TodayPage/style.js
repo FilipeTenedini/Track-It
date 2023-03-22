@@ -32,7 +32,7 @@ export const Text = styled.p`
     font-size: 18px;
     line-height: 22px;
     color: ${({didSomething}) => didSomething ? c.concludedColor : c.dkColor };
-`
+`;
 export const Content = styled.div`
     width: 100%;
     max-width: 400px;
@@ -43,7 +43,8 @@ export const Content = styled.div`
 export const CardContainer = styled.article`
     width: 80%;
     max-width: 340px;
-    height: 94px;
+    min-height: 94px;
+    padding: 10px;
     border-radius: 5px;
     background-color: ${c.cardColor};
     display: flex;
@@ -55,6 +56,7 @@ export const CardContainer = styled.article`
 export const CardInfos = styled.div`
     display: flex;
     flex-direction: column;
+    width: 80%;
 
     h3{
         font-weight: 400;
@@ -74,8 +76,8 @@ export const HabitInfoText = styled.span`
     color: ${({biggerThan}) => biggerThan ? c.concludedColor : c.dkTextColor};
 `
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
-    width: 69px;
-    height: 69px;
+    width: 50px;
+    height: 50px;
     color: ${({done}) => done === true ? c.concludedColor : c.dkColor };
     border: 1px solid #E7E7E7;
     border-radius: 15px;

@@ -15,6 +15,7 @@ export const Container = styled.header`
 `;
 export const LogoArea = styled.img`
     margin: 10px 0 10px 15px;
+    cursor: pointer;
 `;
 export const FotoArea = styled.div`
     width: 51px;

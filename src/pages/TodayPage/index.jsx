@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ConcludedsContext } from "../../context/ConcludedsContext";
@@ -6,7 +7,6 @@ import { Container, Content, Status, Text } from "./style";
 import Card from "./Card";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
-import axios from "axios";
 
 export default function TodayPage() {
   const [ habits, setHabits ] = useState([]);
@@ -31,12 +31,19 @@ export default function TodayPage() {
         setConcludeds(concludedList.length);
       })
       .catch(err => alert(err.response.data.message));
-  }, [auth]);
+  }, []);
 
-  useEffect(() => setPercentConcludeds((concludeds / habits.length) * 100), [concludeds])
+  useEffect(() => {
+    const notValue = 0;
+    if (concludeds === notValue && habits.length === notValue){
+      setPercentConcludeds(0)
+    } else {
+      setPercentConcludeds((concludeds / habits.length) * 100)
+    }
+  }, [])
 
-  const returnDay = () => {
-    switch (date.getDay()){
+  function returnDay() {
+    switch (date.getDay()) {
       case 0:
         return 'Domingo';
       case 1:
@@ -55,13 +62,14 @@ export default function TodayPage() {
         return "Erro ao carregar o dia.";
     }
   }
+  
   return (
     <>
       <Header />
       <Container>
         <Status>
-            <h2 data-test="today">{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
-            <Text didSomething={concludeds > 0 ? true : false} data-test="today-counter">
+            <h2>{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
+            <Text didSomething={concludeds > 0 ? true : false}>
               {concludeds ? `${concludeds / habits.length * 100}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
             </Text>
         </Status>

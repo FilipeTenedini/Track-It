@@ -31,4 +31,4 @@ export const Text = styled.p`
     font-size: 18px;
     line-height: 22px;
     color: ${c.dkColor};
-`
+`;

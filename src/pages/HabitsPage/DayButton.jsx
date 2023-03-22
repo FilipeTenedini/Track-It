@@ -2,11 +2,13 @@ import { Day } from "./style";
 
 export default function DayButton({char, id, isSelected, clickFn, isDisabled}){
 
-    const selectItem = (id) => clickFn(id);
+    function selectItem(id) {
+        return clickFn(id);
+    }
 
     return (
         <>
-        <Day disabled={isDisabled} selected={isSelected} onClick={() => selectItem(id)} data-test="habit-day">
+        <Day disabled={isDisabled} selected={isSelected} onClick={() => selectItem(id)}>
             {char}
         </Day>
         </>

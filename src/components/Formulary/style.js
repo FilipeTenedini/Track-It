@@ -13,7 +13,7 @@ export const FormArea = styled.form`
         max-width: 303px;
         height: 45px;
         padding: 11px;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
         border-radius: 5px;
         outline: none;
         border: 1px solid #D5D5D5;

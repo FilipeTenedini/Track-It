@@ -3,20 +3,20 @@ import { HabitArea, TextArea, DaysContainer, TrashIcon, Day} from "./style";
 
 export default function HabitCard({item: {days, name}, clickFn}){
     return (
-        <HabitArea data-test="habit-container">
+        <HabitArea>
             <TextArea>
-                <p data-test="habit-name">
+                <p>
                     {name}
                 </p>
                 <DaysContainer>
                 {initialLetterDays.map((char, ind) => (
-                    <Day key={ind} selected={days.includes(ind)} data-test="habit-day">
+                    <Day key={ind} selected={days.includes(ind)}>
                         {char}
                     </Day>
                 ))}
                 </DaysContainer>
             </TextArea>
-            <TrashIcon onClick={clickFn} data-test="habit-delete-btn"/>
+            <TrashIcon onClick={clickFn}/>
         </HabitArea>
     );
 }

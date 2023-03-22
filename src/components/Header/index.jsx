@@ -1,5 +1,5 @@
 import Logo from "../../images/nameLogo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Container, LogoArea, FotoArea } from "./style";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,8 +15,10 @@ export default function Header() {
 
   return (
       <>
-        <Container data-test="header">
-          <LogoArea src={Logo} alt="TrackIt logo picture" />
+        <Container>
+          <Link to={"/hoje"}>
+            <LogoArea src={Logo} alt="TrackIt logo picture" />
+          </Link>
           <FotoArea>
             <img src={auth.image} alt="Picture of the user" />
           </FotoArea>

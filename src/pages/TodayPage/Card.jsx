@@ -9,44 +9,43 @@ export default function Card({id, name, done, currentSequence, highestSequence, 
 
     const { auth } = useContext(AuthContext);
     
-    const handleToggleDoneHabit = () => {
-        const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
-        if (!isConcluded){
+    function handleToggleDoneHabit() {
+        const config = { headers: { 'Authorization': `Bearer ${auth.token}` } };
+        if (!isConcluded) {
             axios
                 .post(`${BASE_URL}/habits/${id}/check`, {}, config)
                 .then(() => {
-                    setIsConcluded(prevState => prevState === true ? false : true)
+                    setIsConcluded(prevState => prevState === true ? false : true);
                     setConcludeds(prevState => prevState + 1);
                 })
                 .catch(err => alert(err.response.data.message));
         } else {
             axios
-            .post(`${BASE_URL}/habits/${id}/uncheck`, {}, config)
-            .then(() => {
-                setIsConcluded(prevState => prevState === false ? true : false)
-                setConcludeds(prevState => prevState - 1);
-            })
-            .catch(err => alert(err.response.data.message));
+                .post(`${BASE_URL}/habits/${id}/uncheck`, {}, config)
+                .then(() => {
+                    setIsConcluded(prevState => prevState === false ? true : false);
+                    setConcludeds(prevState => prevState - 1);
+                })
+                .catch(err => alert(err.response.data.message));
         }
     }
 
     return (
-        <CardContainer data-test="today-habit-container">
+        <CardContainer>
             <CardInfos>
-                <h3 data-test="today-habit-name">
+                <h3>
                     {name}
                 </h3>
-                <p data-test="today-habit-sequence">
+                <p>
                     Sequência atual: <HabitInfoText biggerThan={currentSequence >= highestSequence}>{currentSequence} dias</HabitInfoText>
                 </p>
-                <p data-test="today-habit-record">
+                <p>
                     Seu recorde: {highestSequence} dias
                 </p>
             </CardInfos>
             <MyCheckBox 
                 done={isConcluded}
                 onClick={() => handleToggleDoneHabit(done)}
-                data-test="today-habit-check-btn"  
             />
         </CardContainer>
     );

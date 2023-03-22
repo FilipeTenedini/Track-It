@@ -14,21 +14,25 @@ export default function RegisterPage() {
 
   const navigate = useNavigate();
 
-  const handleClick = () => navigate("/");
+  function handleClick() {
+    return navigate("/");
+  }
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-      axios
+    axios
       .post(`${BASE_URL}/auth/sign-up`, registerForm)
       .then(() => navigate("/"))
       .catch(err => {
         alert(err.response.data.message);
         setLoading(false);
-      })
+      });
   }
 
-  const handleUpdateForm = (e) => setRegisterForm({...registerForm, [e.target.name]: e.target.value});
+  function handleUpdateForm(e) {
+    return setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+  }
 
   return (
     <Container>
@@ -37,7 +41,6 @@ export default function RegisterPage() {
       text="Já tem uma conta? Faça login!" c
       clickFn={handleClick} 
       submit={handleSubmit} 
-      test="login-link"
       >
         <input 
         type="email"
@@ -46,7 +49,6 @@ export default function RegisterPage() {
         value={registerForm.email}
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="email-input"
         />
         
         <input 
@@ -56,7 +58,6 @@ export default function RegisterPage() {
         value={registerForm.password}
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="password-input"
         />
         <input 
         type="text"
@@ -65,7 +66,6 @@ export default function RegisterPage() {
         value={registerForm.name}
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="user-name-input"
         />
         <input 
         type="url"
@@ -74,12 +74,10 @@ export default function RegisterPage() {
         value={registerForm.image}
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="user-image-input"
         />
         <Button
         disabled={loading}
         text={loading ? <Loader /> : "Cadastrar"}
-        test="signup-btn"
         />
       </Formulary>
     </Container>

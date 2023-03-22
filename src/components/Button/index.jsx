@@ -1,8 +1,8 @@
 import { MyButton } from "./style";
 
-export default function Button({text, disabled, test}) {
+export default function Button({text, disabled}) {
     return (
-      <MyButton type="submit" disabled={disabled} data-test={test}>
+      <MyButton type="submit" disabled={disabled}>
         {text}
       </MyButton>
     );

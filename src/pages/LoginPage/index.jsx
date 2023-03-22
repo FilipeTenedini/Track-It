@@ -15,9 +15,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
 
-  const handleClick = () => navigate("/cadastro");
+  function handleClick() {
+    return navigate("/cadastro");
+  }
 
-  const handleSignIn = (e) => {
+  function handleSignIn(e) {
     e.preventDefault();
     setLoading(true);
     axios
@@ -28,16 +30,18 @@ export default function LoginPage() {
           email: res.data.email,
           image: res.data.image,
           token: res.data.token
-        })
-        navigate("/hoje")
+        });
+        navigate("/hoje");
       })
       .catch(err => {
         alert(err.response.data.message);
         setLoading(false);
-      })
+      });
   }
 
-  const handleUpdateForm = (e) => setLoginForm({...loginForm, [e.target.name]: e.target.value});
+  function handleUpdateForm(e) {
+    return setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
+  }
 
   return (
     <Container>
@@ -55,7 +59,6 @@ export default function LoginPage() {
         name="email"
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="email-input"
         />
         <input 
         type="password"
@@ -64,12 +67,10 @@ export default function LoginPage() {
         value={loginForm.password}
         onChange={handleUpdateForm}
         disabled={loading}
-        data-test="password-input"
         />
         <Button 
         disabled={loading}
         text={loading ? <Loader /> : "Entrar"}
-        test="login-btn"
         />
       </Formulary>
     </Container>

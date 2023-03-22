@@ -1,5 +1,5 @@
 import { c } from "../../constants/colors";
-import { ThreeDots } from  'react-loader-spinner'
+import { ThreeDots, MutatingDots } from  'react-loader-spinner'
 
 export default function Loader() {
 
@@ -16,3 +16,16 @@ export default function Loader() {
         />
     );
 }
+
+
+// <MutatingDots 
+//   height="100"
+//   width="100"
+//   color=`${c.lightColor}`
+//   secondaryColor=`${c.lightColor}`
+//   radius='12.5'
+//   ariaLabel="mutating-dots-loading"
+//   wrapperStyle={{}}
+//   wrapperClass=""
+//   visible={true}
+//  />

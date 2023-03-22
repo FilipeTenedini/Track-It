@@ -14,7 +14,7 @@ export default function ProgressBar(){
         <ProgbarSpace>
             <Link to={"/hoje"}>
                 <CircularProgressbar 
-                    value={percentConcludeds === 0 ? 0 : percentConcludeds}
+                    value={percentConcludeds}
                     text="Hoje"
                     background
                     backgroundPadding={6}
@@ -24,7 +24,6 @@ export default function ProgressBar(){
                     pathColor: "#fff",
                     trailColor: "transparent",
                     })}
-                    data-test="today-link"
                 />
             </Link>
         </ProgbarSpace>

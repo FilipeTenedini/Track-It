@@ -11,41 +11,46 @@ import HabitCard from "./HabitCard";
 export default function HabitsPage() {
   const [createdHabits, setCreatedHabits] = useState(null);
   const [creating, setCreating] = useState(false);
-  const [savedData, setSavedData] = useState({days:'', title:''})
+  const [savedData, setSavedData] = useState({days:'', title:''});
   const {auth} = useContext(AuthContext);
+  
   const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
 
-  const getHabits = () => {
+  useEffect(() => {getHabits()}, []);
+
+  
+  function getHabits() {
     axios
       .get(`${BASE_URL}/habits`, config)
       .then(res => {
         res.data.length > 0
           ? setCreatedHabits(res.data)
-          : setCreatedHabits(null)
+          : setCreatedHabits(null);
       })
       .catch(err => alert(err.response.data.message));
   }
 
-  useEffect(() => getHabits(), []);
 
-  const handleToggleCreating = () => setCreating(!creating)
+  function handleToggleCreating() {
+    return setCreating(!creating);
+  }
   
-  const handleDeleteHabit = (id) => {
-    const question = window.confirm('Tem certeza que deseja deletar este hábito?')
+  function handleDeleteHabit(id) {
+    const question = window.confirm('Tem certeza que deseja deletar este hábito?');
     if (question) {
       axios
-      .delete(`${BASE_URL}/habits/${id}`, config)
-      .then(() => {
+        .delete(`${BASE_URL}/habits/${id}`, config)
+        .then(() => {
           axios
             .get(`${BASE_URL}/habits`, config)
             .then(res => {
               res.data.length > 0
                 ? setCreatedHabits(res.data)
-                : setCreatedHabits(null)
+                : setCreatedHabits(null);
             })
             .catch(err => alert(err.response.data.message));
-      })
-      .catch(err => alert(err.response.data.message));
+        })
+        .catch(err => alert(err.response.data.message));
     }
 
   }
@@ -55,7 +60,7 @@ export default function HabitsPage() {
       <Container>
       <Status>
             <h2>Meus hábitos</h2>
-            <AddBox onClick={handleToggleCreating} data-test="habit-create-btn"/>
+            <AddBox onClick={handleToggleCreating}/>
       </Status>
         <Content>
         { creating &&
@@ -69,7 +74,7 @@ export default function HabitsPage() {
         }
 
         {createdHabits 
-          ? createdHabits.map((item, index) => (
+          ? createdHabits.map((item) => (
             <HabitCard 
               key={item.id}
               item={item}
