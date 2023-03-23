@@ -36,6 +36,7 @@ export const Text = styled.p`
 export const Content = styled.div`
     width: 100%;
     max-width: 400px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,7 +79,7 @@ export const HabitInfoText = styled.span`
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
     width: 50px;
     height: 50px;
-    color: ${({done}) => done === true ? c.concludedColor : c.dkColor };
+    color: ${({done}) => done === "true" ? c.concludedColor : c.dkColor };
     border: 1px solid #E7E7E7;
     border-radius: 15px;
     cursor: pointer;

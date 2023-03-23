@@ -7,16 +7,19 @@ import AddHabitCard from "./AddHabitCard";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import HabitCard from "./HabitCard";
+import Loader from "../../components/Loaders/Loader";
 
 export default function HabitsPage() {
   const [createdHabits, setCreatedHabits] = useState(null);
   const [creating, setCreating] = useState(false);
   const [savedData, setSavedData] = useState({days:'', title:''});
+  const [loading, setLoading] = useState(true);
+  
   const {auth} = useContext(AuthContext);
   
   const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
 
-  useEffect(() => {getHabits()}, []);
+  useEffect(() => getHabits(), []);
 
   
   function getHabits() {
@@ -27,7 +30,8 @@ export default function HabitsPage() {
           ? setCreatedHabits(res.data)
           : setCreatedHabits(null);
       })
-      .catch(err => alert(err.response.data.message));
+      .catch(err => alert(err.response.data.message))
+      .finally(() => setLoading(false));
   }
 
 
@@ -54,6 +58,8 @@ export default function HabitsPage() {
     }
 
   }
+
+
   return (
     <>
       <Header />
@@ -62,7 +68,10 @@ export default function HabitsPage() {
             <h2>Meus hábitos</h2>
             <AddBox onClick={handleToggleCreating}/>
       </Status>
-        <Content>
+      {loading 
+        ? <Loader />
+        :<Content>
+        
         { creating &&
             <AddHabitCard 
             handleToggleCreating={handleToggleCreating}
@@ -85,7 +94,7 @@ export default function HabitsPage() {
               Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
             </NoneHabitsMsg>
         }
-        </Content>
+        </Content>}
       </Container>
       <NavBar />
     </>

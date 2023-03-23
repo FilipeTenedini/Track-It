@@ -3,28 +3,32 @@ import { useContext, useState } from "react";
 import { BASE_URL } from "../../api/url";
 import { AuthContext } from "../../context/AuthContext";
 import { MyCheckBox, CardContainer, CardInfos, HabitInfoText } from "./style";
+import CheckLoader from "../../components/Loaders/CheckLoader";
 
-export default function Card({id, name, done, currentSequence, highestSequence, setConcludeds}){
-    const [isConcluded, setIsConcluded] = useState(done || false);
-
+export default function Card({item: {id, name, done, currentSequence, highestSequence}, setConcludeds}){
+    const [isConcluded, setIsConcluded] = useState(done);
+    const [loadingCheck, setLoadingCheck] = useState(false)
     const { auth } = useContext(AuthContext);
     
     function handleToggleDoneHabit() {
+        setLoadingCheck(true)
         const config = { headers: { 'Authorization': `Bearer ${auth.token}` } };
         if (!isConcluded) {
             axios
                 .post(`${BASE_URL}/habits/${id}/check`, {}, config)
                 .then(() => {
-                    setIsConcluded(prevState => prevState === true ? false : true);
+                    setIsConcluded(true);
                     setConcludeds(prevState => prevState + 1);
+                    setLoadingCheck(false)
                 })
                 .catch(err => alert(err.response.data.message));
         } else {
             axios
                 .post(`${BASE_URL}/habits/${id}/uncheck`, {}, config)
                 .then(() => {
-                    setIsConcluded(prevState => prevState === false ? true : false);
+                    setIsConcluded(false);
                     setConcludeds(prevState => prevState - 1);
+                    setLoadingCheck(false)
                 })
                 .catch(err => alert(err.response.data.message));
         }
@@ -43,10 +47,10 @@ export default function Card({id, name, done, currentSequence, highestSequence, 
                     Seu recorde: {highestSequence} dias
                 </p>
             </CardInfos>
-            <MyCheckBox 
-                done={isConcluded}
-                onClick={() => handleToggleDoneHabit(done)}
-            />
+            {loadingCheck
+                ? <CheckLoader />
+                : <MyCheckBox done={isConcluded.toString()} onClick={() => handleToggleDoneHabit(done)} />
+            }
         </CardContainer>
     );
 }

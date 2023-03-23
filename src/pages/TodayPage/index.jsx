@@ -7,10 +7,12 @@ import { Container, Content, Status, Text } from "./style";
 import Card from "./Card";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import Loader from "../../components/Loaders/Loader";
 
 export default function TodayPage() {
   const [ habits, setHabits ] = useState([]);
   const [concludeds, setConcludeds] = useState(0);
+  const [loading, setLoading] = useState(true);
   const { auth } = useContext(AuthContext);
   const { setPercentConcludeds } = useContext(ConcludedsContext);
 
@@ -30,17 +32,18 @@ export default function TodayPage() {
         const concludedList = res.data.filter(item => item.done === true);
         setConcludeds(concludedList.length);
       })
-      .catch(err => alert(err.response.data.message));
+      .catch(err => alert(err.response.data.message))
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
     const notValue = 0;
-    if (concludeds === notValue && habits.length === notValue){
-      setPercentConcludeds(0)
-    } else {
-      setPercentConcludeds((concludeds / habits.length) * 100)
-    }
-  }, [])
+
+    concludeds === notValue && habits.length === notValue
+    ? setPercentConcludeds(0)
+    : setPercentConcludeds((concludeds / habits.length) * 100)
+  }, [concludeds, habits.length]);
+
 
   function returnDay() {
     switch (date.getDay()) {
@@ -70,22 +73,23 @@ export default function TodayPage() {
         <Status>
             <h2>{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
             <Text didSomething={concludeds > 0 ? true : false}>
-              {concludeds ? `${concludeds / habits.length * 100}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
+              {concludeds ? `${(concludeds / habits.length * 100).toFixed(2)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
             </Text>
         </Status>
-        <Content>
-          {habits.map(item => (
-            <Card 
-              id={item.id}
-              name={item.name} 
-              done={item.done}
-              currentSequence={item.currentSequence}
-              highestSequence={item.highestSequence}
-              setConcludeds={setConcludeds}
-              concludeds={concludeds}
-            />
-          ))}
-        </Content>
+        { loading
+          ? <Loader />
+          : <Content>
+            { habits.map((item, index) => (
+                <Card
+                  key={index}
+                  item={item}
+                  setConcludeds={setConcludeds}
+                  concludeds={concludeds}
+                />
+              ))
+            }
+          </Content>
+        }
       </Container>
       <NavBar />
     </>

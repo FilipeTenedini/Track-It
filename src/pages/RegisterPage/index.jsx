@@ -5,7 +5,7 @@ import { Container } from "./style";
 import Formulary from "../../components/Formulary";
 import LogoArea from "../../components/LogoArea";
 import Button from "../../components/Button";
-import Loader from "../../components/Loader/Loader";
+import Loader from "../../components/Loaders/Loader";
 import { BASE_URL } from "../../api/url";
 
 export default function RegisterPage() { 

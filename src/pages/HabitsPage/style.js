@@ -81,6 +81,7 @@ export const HabitFormContainer = styled.article`
         padding-left: 11px;
         margin-bottom: 10px;
         outline: none;
+        color: ${c.dkTextColor};
     }
 `;
 export const DaysContainer = styled.div`
@@ -124,6 +125,7 @@ export const CancelButton = styled.button`
     border: none;
     cursor: pointer;
     transition: .4s;
+    
     &:hover{
         color: ${c.darkImp};
     }
@@ -180,9 +182,6 @@ export const TextArea = styled.div`
         margin-bottom: 8px;
     }
 `;
-export const PlanDayButton = styled.div`
-
-`
 export const TrashIcon = styled(BsTrash3)`
     position: absolute;
     top: 11px;
