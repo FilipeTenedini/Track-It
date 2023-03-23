@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { MyCheckBox, CardContainer, CardInfos, Span } from "./style";
 import CheckLoader from "../../components/Loaders/CheckLoader";
 
-export default function Card({item: {id, name, done, currentSequence, highestSequence}, setConcludeds}){
+export default function Card({item: {id, name, done, currentSequence, highestSequence}, setConcludedsQt}){
     const [isConcluded, setIsConcluded] = useState(done);
     const [loadingCheck, setLoadingCheck] = useState(false)
     const { auth } = useContext(AuthContext);
@@ -18,7 +18,7 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
                 .post(`${BASE_URL}/habits/${id}/check`, {}, config)
                 .then(() => {
                     setIsConcluded(true);
-                    setConcludeds(prevState => prevState + 1);
+                    setConcludedsQt(prevState => prevState + 1);
                 })
                 .catch(err => alert(err.response.data.message))
                 .finally(() => setLoadingCheck(false));
@@ -27,7 +27,7 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
                 .post(`${BASE_URL}/habits/${id}/uncheck`, {}, config)
                 .then(() => {
                     setIsConcluded(false);
-                    setConcludeds(prevState => prevState - 1);
+                    setConcludedsQt(prevState => prevState - 1);
                     setLoadingCheck(false)
                 })
                 .catch(err => alert(err.response.data.message))
@@ -42,11 +42,11 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
                 </h3>
                 <p>
                     Sequência atual: <Span biggerThan={currentSequence >= highestSequence}> 
-                                        {currentSequence} {currentSequence > 1 ? "dias" : "dia"} 
+                                        {currentSequence} {currentSequence < 1 ?  "" : currentSequence > 1 ? "dias" : "dia"} 
                                      </Span>
                 </p>
                 <p>
-                    Seu recorde: {highestSequence} {highestSequence > 1 ? "dias" : "dia"}
+                    Seu recorde: {highestSequence} {highestSequence < 1 ?  "" : highestSequence > 1 ? "dias" : "dia"} 
                 </p>
             </CardInfos>
             {loadingCheck

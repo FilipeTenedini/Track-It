@@ -30,9 +30,7 @@ export default function AddHabitCard({savedData, setSavedData, setCreating, getH
         axios
             .post(`${BASE_URL}/habits`, obj, config)
             .then(() => {
-                setSelectedDays([]);
-                setHabitTitle('');
-                setSavedData({});
+                setSavedData({title: '', days: []});
                 setCreating(false);
                 getHabits();
             })

@@ -11,7 +11,7 @@ import Loader from "../../components/Loaders/Loader";
 
 export default function TodayPage() {
   const [ habits, setHabits ] = useState([]);
-  const [concludeds, setConcludeds] = useState(0);
+  const [concludedsQt, setConcludedsQt] = useState(0);
   const [loading, setLoading] = useState(true);
   const { auth } = useContext(AuthContext);
   const { setPercentConcludeds } = useContext(ConcludedsContext);
@@ -30,19 +30,19 @@ export default function TodayPage() {
       .then(res => {
         setHabits(res.data)
         const concludedList = res.data.filter(item => item.done === true);
-        setConcludeds(concludedList.length);
+        setConcludedsQt(concludedList.length);
       })
       .catch(err => alert(err.response.data.message))
       .finally(() => setLoading(false));
-  }, [concludeds]);
+  }, [concludedsQt]);
 
   useEffect(() => {
     const notValue = 0;
 
-    concludeds === notValue && habits.length === notValue
+    concludedsQt === notValue && habits.length === notValue
     ? setPercentConcludeds(0)
-    : setPercentConcludeds((concludeds / habits.length) * 100)
-  }, [concludeds, habits.length]);
+    : setPercentConcludeds((concludedsQt / habits.length) * 100)
+  }, [concludedsQt, habits.length]);
 
   function returnDay() {
     switch (date.getDay()) {
@@ -70,8 +70,8 @@ export default function TodayPage() {
       <Container>
         <Status>
             <h2>{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
-            <Text didSomething={concludeds > 0 ? true : false}>
-              {concludeds ? `${(concludeds / habits.length * 100).toFixed(2)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
+            <Text didSomething={concludedsQt > 0 ? true : false}>
+              {concludedsQt ? `${(concludedsQt / habits.length * 100).toFixed(2)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
             </Text>
         </Status>
         { loading
@@ -81,8 +81,7 @@ export default function TodayPage() {
                 <Card
                   key={index}
                   item={item}
-                  setConcludeds={setConcludeds}
-                  concludeds={concludeds}
+                  setConcludedsQt={setConcludedsQt}
                 />
               ))
             }
