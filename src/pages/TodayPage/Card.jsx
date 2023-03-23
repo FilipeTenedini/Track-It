@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { BASE_URL } from "../../api/url";
 import { AuthContext } from "../../context/AuthContext";
-import { MyCheckBox, CardContainer, CardInfos, HabitInfoText } from "./style";
+import { MyCheckBox, CardContainer, CardInfos, Span } from "./style";
 import CheckLoader from "../../components/Loaders/CheckLoader";
 
 export default function Card({item: {id, name, done, currentSequence, highestSequence}, setConcludeds}){
@@ -37,14 +37,13 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
     return (
         <CardContainer>
             <CardInfos>
-                {console.log(currentSequence)}
                 <h3>
                     {name}
                 </h3>
                 <p>
-                    Sequência atual: <HabitInfoText biggerThan={currentSequence >= highestSequence}> 
+                    Sequência atual: <Span biggerThan={currentSequence >= highestSequence}> 
                                         {currentSequence} {currentSequence > 1 ? "dias" : "dia"} 
-                                     </HabitInfoText>
+                                     </Span>
                 </p>
                 <p>
                     Seu recorde: {highestSequence} {highestSequence > 1 ? "dias" : "dia"}

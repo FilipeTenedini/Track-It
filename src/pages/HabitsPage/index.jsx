@@ -34,9 +34,8 @@ export default function HabitsPage() {
       .finally(() => setLoading(false));
   }
 
-
   function handleToggleCreating() {
-    return setCreating(!creating);
+    return setCreating(true);
   }
   
   function handleDeleteHabit(id) {
@@ -56,7 +55,6 @@ export default function HabitsPage() {
         })
         .catch(err => alert(err.response.data.message));
     }
-
   }
 
 
@@ -66,7 +64,10 @@ export default function HabitsPage() {
       <Container>
       <Status>
             <h2>Meus hábitos</h2>
-            <AddBox onClick={handleToggleCreating}/>
+            <AddBox 
+            onClick={handleToggleCreating}
+            disabled={creating}
+            />
       </Status>
       {loading 
         ? <Loader />
@@ -74,7 +75,6 @@ export default function HabitsPage() {
         
         { creating &&
             <AddHabitCard 
-            handleToggleCreating={handleToggleCreating}
             savedData={savedData}
             setSavedData={setSavedData}
             setCreating={setCreating}
