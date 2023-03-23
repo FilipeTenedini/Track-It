@@ -28,9 +28,9 @@ export const slideTop = keyframes`
         opacity: 0.7;
     }
     100% {
-        -webkit-transform: translateY(-100vw);
-                transform: translateY(-100vw);
-                height: 0;
+        -webkit-transform: translateY(-150vw);
+                transform: translateY(-150vw);
+                height: 0px;
                 opacity: 0;
     }
 `;

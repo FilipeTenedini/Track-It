@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MdAddBox } from "react-icons/md";
 import { BsTrash3 } from "react-icons/bs";
 import { c } from "../../constants/colors";
-import { slideBottom } from "../../constants/animations";
+import { slideBottom, slideTop } from "../../constants/animations";
 
 export const Container = styled.section`
     width: 100%;
@@ -68,10 +68,10 @@ export const HabitFormContainer = styled.article`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 29px;
+    margin-bottom: ${({closingForm}) => closingForm ? "0px" : "29px"};
     transform: translateY(-100vw);
-	-webkit-animation: ${slideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: ${slideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: ${({closingForm}) => closingForm ? slideTop : slideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: ${({closingForm}) => closingForm ? slideTop : slideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 
     input{
@@ -108,6 +108,10 @@ export const Day = styled.button`
     font-size: 20px;
     line-height: 25px;
     cursor: pointer;
+    transition: .2s;
+    &:hover{
+        transform: scale(1.1);
+    }
 `;
 export const Buttons = styled.div`
     width: 100%;

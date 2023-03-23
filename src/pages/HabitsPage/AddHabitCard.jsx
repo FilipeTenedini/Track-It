@@ -10,6 +10,7 @@ export default function AddHabitCard({savedData, setSavedData, setCreating, getH
     const [selectedDays, setSelectedDays] = useState(savedData.days);
     const [habitTitle, setHabitTitle] = useState(savedData.title);
     const [isDisabled, setIsDisabled] = useState(false);
+    const [closingForm, setClosingForm] = useState(false)
     const {auth} = useContext(AuthContext);
 
     function selectDay(id) {
@@ -40,15 +41,21 @@ export default function AddHabitCard({savedData, setSavedData, setCreating, getH
     }
 
     function handleCloseForm() {
+        setClosingForm(true);
         setSavedData({
             title: habitTitle,
             days: selectedDays
         });
-        setCreating(false);
+
+        const time = setTimeout(() => {
+            setCreating(false);
+        }, 600);
+        
+        return () => clearTimeout(time);
     }
 
     return(
-        <HabitFormContainer>
+        <HabitFormContainer closingForm={closingForm}>
             <input
                 type="text" 
                 placeholder="nome do hábito"
