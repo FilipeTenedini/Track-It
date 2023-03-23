@@ -19,9 +19,9 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
                 .then(() => {
                     setIsConcluded(true);
                     setConcludeds(prevState => prevState + 1);
-                    setLoadingCheck(false)
                 })
-                .catch(err => alert(err.response.data.message));
+                .catch(err => alert(err.response.data.message))
+                .finally(() => setLoadingCheck(false));
         } else {
             axios
                 .post(`${BASE_URL}/habits/${id}/uncheck`, {}, config)
@@ -30,21 +30,24 @@ export default function Card({item: {id, name, done, currentSequence, highestSeq
                     setConcludeds(prevState => prevState - 1);
                     setLoadingCheck(false)
                 })
-                .catch(err => alert(err.response.data.message));
+                .catch(err => alert(err.response.data.message))
+                .finally(() => setLoadingCheck(false));
         }
     }
-
     return (
         <CardContainer>
             <CardInfos>
+                {console.log(currentSequence)}
                 <h3>
                     {name}
                 </h3>
                 <p>
-                    Sequência atual: <HabitInfoText biggerThan={currentSequence >= highestSequence}>{currentSequence} dias</HabitInfoText>
+                    Sequência atual: <HabitInfoText biggerThan={currentSequence >= highestSequence}> 
+                                        {currentSequence} {currentSequence > 1 ? "dias" : "dia"} 
+                                     </HabitInfoText>
                 </p>
                 <p>
-                    Seu recorde: {highestSequence} dias
+                    Seu recorde: {highestSequence} {highestSequence > 1 ? "dias" : "dia"}
                 </p>
             </CardInfos>
             {loadingCheck

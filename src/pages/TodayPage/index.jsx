@@ -34,7 +34,7 @@ export default function TodayPage() {
       })
       .catch(err => alert(err.response.data.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [concludeds]);
 
   useEffect(() => {
     const notValue = 0;
@@ -43,7 +43,6 @@ export default function TodayPage() {
     ? setPercentConcludeds(0)
     : setPercentConcludeds((concludeds / habits.length) * 100)
   }, [concludeds, habits.length]);
-
 
   function returnDay() {
     switch (date.getDay()) {
@@ -65,7 +64,6 @@ export default function TodayPage() {
         return "Erro ao carregar o dia.";
     }
   }
-  
   return (
     <>
       <Header />

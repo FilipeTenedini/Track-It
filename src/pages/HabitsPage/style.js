@@ -59,7 +59,8 @@ export const NoneHabitsMsg = styled.p`
 `
 
 export const HabitFormContainer = styled.article`
-    width: 340px;
+    width: 90%;
+    max-width: 340px;
     height: 180px;
     border-radius: 5px;
     background-color: ${c.cardColor};
@@ -74,7 +75,8 @@ export const HabitFormContainer = styled.article`
 
 
     input{
-        width: 303px;
+        width: 90%;
+        max-width: 303px;
         height: 45px;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
@@ -85,8 +87,9 @@ export const HabitFormContainer = styled.article`
     }
 `;
 export const DaysContainer = styled.div`
-    display: flex;
+    max-width: 90%;
     width: 303px;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
 `;
@@ -156,7 +159,8 @@ export const SaveButton = styled.button`
 `;
 
 export const HabitArea = styled.div`
-    width: 340px;
+    width: 90%;
+    max-width: 340px;
     min-height: 90px;
     padding: 10px;
     border-radius: 5px;
