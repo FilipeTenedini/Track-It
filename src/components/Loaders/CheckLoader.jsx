@@ -7,7 +7,7 @@ export default function CheckLoader() {
         <ThreeCircles
             height="50"
             width="50"
-            color={c.concludedColor}
+            color={c.lightImp}
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}

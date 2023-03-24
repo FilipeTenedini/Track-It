@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { c } from "../../constants/colors";
 import { BsFillCheckSquareFill } from "react-icons/bs"
 
-export const Container = styled.section`
+export const Container = styled.main`
     width: 100%;
     height: calc(100vh - 140px);
     display: flex;
@@ -13,7 +13,7 @@ export const Container = styled.section`
     background-color: ${c.midColor};
     overflow-y: scroll;
 `;
-export const Status = styled.div`
+export const Status = styled.section`
     width: 100%;
     height: 107px;
     display: flex;
@@ -33,13 +33,14 @@ export const Text = styled.p`
     line-height: 22px;
     color: ${({didSomething}) => didSomething ? c.concludedColor : c.dkColor };
 `;
-export const Content = styled.div`
+export const Content = styled.section`
     width: 100%;
     max-width: 400px;
     padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 `;
 export const CardContainer = styled.article`
     width: 80%;

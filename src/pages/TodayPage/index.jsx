@@ -67,6 +67,7 @@ export default function TodayPage() {
   return (
     <>
       <Header />
+      
       <Container>
         <Status>
             <h2>{returnDay()}, {date.getDate() }/{date.getMonth()}</h2>
@@ -74,17 +75,17 @@ export default function TodayPage() {
               {concludedsQt ? `${(concludedsQt / habits.length * 100).toFixed(2)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
             </Text>
         </Status>
-        { loading
+        {loading
           ? <Loader />
           : <Content>
-            { habits.map((item, index) => (
-                <Card
-                  key={index}
-                  item={item}
-                  setConcludedsQt={setConcludedsQt}
-                />
-              ))
-            }
+              {habits.map((item, index) => (
+                  <Card
+                    key={index}
+                    item={item}
+                    setConcludedsQt={setConcludedsQt}
+                  />
+                ))
+              }
           </Content>
         }
       </Container>

@@ -72,28 +72,27 @@ export default function HabitsPage() {
       {loading 
         ? <Loader />
         :<Content>
-        
-        { creating &&
-            <AddHabitCard 
-            savedData={savedData}
-            setSavedData={setSavedData}
-            setCreating={setCreating}
-            getHabits={getHabits}
-            />
-        }
+          {creating &&
+              <AddHabitCard 
+              savedData={savedData}
+              setSavedData={setSavedData}
+              setCreating={setCreating}
+              getHabits={getHabits}
+              />
+          }
 
-        {createdHabits 
-          ? createdHabits.map((item) => (
-            <HabitCard 
-              key={item.id}
-              item={item}
-              clickFn={() => handleDeleteHabit(item.id)}
-            />
-          ))
-          : <NoneHabitsMsg> 
-              Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </NoneHabitsMsg>
-        }
+          {createdHabits 
+            ? createdHabits.map((item) => (
+              <HabitCard 
+                key={item.id}
+                item={item}
+                clickFn={() => handleDeleteHabit(item.id)}
+              />
+            ))
+            : <NoneHabitsMsg> 
+                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+              </NoneHabitsMsg>
+          }
         </Content>}
       </Container>
       <NavBar />

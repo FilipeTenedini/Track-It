@@ -11,7 +11,6 @@ import { BASE_URL } from "../../api/url";
 export default function RegisterPage() { 
   const [registerForm, setRegisterForm] = useState({email: '', name: '', image: '', password: ''});
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   function handleClick() {

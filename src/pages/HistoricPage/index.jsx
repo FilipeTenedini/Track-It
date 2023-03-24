@@ -1,7 +1,7 @@
 import { Container, Status, Text } from "./style";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
-
+import { useState } from "react";
 export default function HistoricPage() {
   return (
     <>

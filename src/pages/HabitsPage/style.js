@@ -4,7 +4,7 @@ import { BsTrash3 } from "react-icons/bs";
 import { c } from "../../constants/colors";
 import { slideBottom, slideTop } from "../../constants/animations";
 
-export const Container = styled.section`
+export const Container = styled.main`
     width: 100%;
     height: calc(100vh - 140px);
     display: flex;
@@ -15,7 +15,7 @@ export const Container = styled.section`
     background-color: ${c.midColor};
     overflow-y: scroll;
 `;
-export const Status = styled.div`
+export const Status = styled.section`
     width: 100%;
     height: 107px;
     display: flex;
@@ -43,12 +43,13 @@ export const AddBox = styled(MdAddBox)`
         color: ${c.lightImp};
     }
 `;
-export const Content = styled.div`
+export const Content = styled.section`
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 15px;
 `;
 export const NoneHabitsMsg = styled.p`
     font-weight: 400;
@@ -162,7 +163,7 @@ export const SaveButton = styled.button`
     }
 `;
 
-export const HabitArea = styled.div`
+export const HabitArea = styled.article`
     width: 90%;
     max-width: 340px;
     min-height: 90px;

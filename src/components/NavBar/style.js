@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import  { c } from "../../constants/colors";
 
-export const Container = styled.footer`
+export const Container = styled.nav`
     width: 100%;
     height: 70px;
     display: flex;

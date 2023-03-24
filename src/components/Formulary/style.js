@@ -7,7 +7,6 @@ export const FormArea = styled.form`
     flex-direction: column;
     align-items: center;
     margin-bottom: 25px;
-
     input{
         width: 80%;
         max-width: 303px;
@@ -17,6 +16,12 @@ export const FormArea = styled.form`
         border-radius: 5px;
         outline: none;
         border: 1px solid #D5D5D5;
+    }
+    input[type="checkbox"]{
+        height: 20px;
+        width: 20px;
+        margin: 0 0 0 10px;
+        border-radius: 50%;
     }
 `;
 export const Register = styled.a`
