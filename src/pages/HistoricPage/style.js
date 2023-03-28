@@ -26,9 +26,9 @@ export const Status = styled.div`
         color: ${c.darkImp};
     }
 `;
-export const Text = styled.p`
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    color: ${c.dkColor};
-`;
+// export const Text = styled.p`
+//     font-weight: 400;
+//     font-size: 18px;
+//     line-height: 22px;
+//     color: ${c.dkColor};
+// `;
