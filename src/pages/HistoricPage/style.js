@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 import { c } from "../../constants/colors";
 
 export const Container = styled.section`
@@ -8,7 +10,7 @@ export const Container = styled.section`
     flex-direction: column;
     align-items: center;
     margin-top: 70px;
-    margin-bottom: 70px;
+    padding-bottom: 90px;
     background-color: ${c.midColor};
     overflow-y: scroll;
 `;
@@ -26,9 +28,23 @@ export const Status = styled.div`
         color: ${c.darkImp};
     }
 `;
-// export const Text = styled.p`
-//     font-weight: 400;
-//     font-size: 18px;
-//     line-height: 22px;
-//     color: ${c.dkColor};
-// `;
+
+export const MyCalendar = styled(Calendar)`
+
+    width: calc(100% - 40px);
+    border-radius: 5px;
+    button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 5px;
+        }
+    }
+`

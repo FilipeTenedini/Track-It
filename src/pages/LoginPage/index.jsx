@@ -27,7 +27,7 @@ export default function LoginPage() {
       });
       navigate("/hoje");
     }
-  })
+  }, [navigate, setAuth])
 
   function handleClick() {
     return navigate("/cadastro");

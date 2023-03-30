@@ -1,21 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { AuthContext } from "../../context/AuthContext";
-import { Container, Status } from "./style";
+import { Container, Status, MyCalendar } from "./style";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import Loader from "../../components/Loaders/Loader";
 
 
 export default function HistoricPage() {
   const [value, setValue] = useState(new Date());
   const [notCompletedHabits, setNotCompletedHabits] = useState([]);
   const [completedDailyHabits, setCompletedDailyHabits] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { auth } = useContext(AuthContext)
 
   useEffect(()=> {
+    setLoading(true);
     const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
 
     axios
@@ -24,26 +25,49 @@ export default function HistoricPage() {
         setCompletedDailyHabits( data.filter( item => item.habits.every(habit => habit.done === true) ));
         setNotCompletedHabits( data.filter( item => item.habits.some(habit => habit.done === false) ));
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
   function formatDate(locale, date){
-   const fullDate = `${locale.getDate()}-${locale.getMonth()}-${locale.getFullYear()}`
+    const fullDate = ( locale.getMonth()+1 < 10) 
+    ? `${locale.getDate()}/0${locale.getMonth()+1}/${locale.getFullYear()}`
+    : `${locale.getDate()}/${locale.getMonth()+1}/${locale.getFullYear()}`;
+
+    if (completedDailyHabits.some(item => item.day === fullDate)){
+      return <div style={{backgroundColor:"#8cc654", color:"#FFF"}}>
+              {locale.getDate()}
+             </div>
+    } else if (notCompletedHabits.some(item => item.day === fullDate)){
+      return <div style={{backgroundColor:"#ea5766", color:"#FFF"}}>
+                {locale.getDate()}
+             </div>
+    } else {
+      return <div>
+              {locale.getDate()}
+             </div>
+    }
   }
 
   return (
     <>
       <Header />
       <Container>
-        <Status>
-          <h2>Histórico</h2>
-        </Status>
-        <Calendar 
-          onChange={setValue}
-          value={value}
-          calendarType="US"
-          // formatDay={(locale, date) => formatDate(date, 'd')}
-        />
+     {loading
+     ? <Loader />
+     : <>
+          <Status>
+            <h2>Histórico</h2>
+          </Status>
+          <MyCalendar 
+            onChange={setValue}
+            value={value}
+            calendarType="US"
+            formatDay={(locale, date) => formatDate(date, 'd')}
+          />
+        
+      </>
+    }
       </Container>
       <NavBar />
     </>
