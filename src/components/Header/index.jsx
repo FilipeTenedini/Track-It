@@ -1,7 +1,7 @@
 import Logo from "../../images/nameLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Container, LogoArea, FotoArea } from "./style";
+import { Container, LogoArea, FotoArea, ThemingArea } from "./style";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 
@@ -25,12 +25,19 @@ export default function Header() {
     !auth && navigate("/");
   },[])
 
+  function handleToggleTheme() {
+    ;
+  }
+
   return (
       <>
         <Container>
           <Link to={"/hoje"}>
             <LogoArea src={Logo} alt="TrackIt logo picture" />
           </Link>
+          <ThemingArea onClick={handleToggleTheme}>
+            🌞🌚
+          </ThemingArea>
           <FotoArea>
             <img src={auth.image} alt="user" />
           </FotoArea>
