@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import  { c } from "../../constants/colors";
 
 export const Container = styled.nav`
     width: 100%;
@@ -7,7 +6,7 @@ export const Container = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: ${c.cardColor};
+    background-color: ${({theme}) => theme.navBarBgColor};
     position: fixed;
     bottom: 0;
     padding: 0px 36px;
@@ -28,10 +27,10 @@ export const Container = styled.nav`
             font-weight: 400;
             font-size: 18px;
             line-height: 22px;
-            color: ${c.lightImp};
+            color: ${({theme}) => theme.secondTextColor};
 
             &:hover{
-                color: ${c.darkImp};
+                color: ${({theme}) => theme.principalTextColor};
             }        
         }
     }

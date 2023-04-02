@@ -1,11 +1,16 @@
 export default {
-    headerColor: "#126BA5",
-    navBarColor: "#FFF",
+    headerBgColor: "#126BA5",
+    navBarBgColor: "#FFF",
     bgColor: "#E5E5E5",
     cardBgColor: "#FFF",
     cardTitleColor:"#BABABA",
-    titleColor: "#126BA5",
+    principalTextColor: "#126BA5",
+    secondTextColor: "#52B6FF",
     subtitleColor: "#BABABA",
-    makedSomething: "#8FC549",
+    concludedColor: "#8FC549",
     checkedColor: "#8FC549",
+    btnTextColor: "#FFF",
+    backgroundColor: "#E5E5E5",
+    lowUse: "#666",
+    trashIcon: "#000"
 }

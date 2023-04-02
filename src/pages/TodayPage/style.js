@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { c } from "../../constants/colors";
 import { BsFillCheckSquareFill } from "react-icons/bs"
 
 export const Container = styled.main`
@@ -10,7 +9,7 @@ export const Container = styled.main`
     align-items: center;
     margin-top: 70px;
     margin-bottom: 70px;
-    background-color: ${c.midColor};
+    background-color: ${({theme}) => theme.backgroundColor};
     overflow-y: scroll;
 `;
 export const Status = styled.section`
@@ -24,14 +23,14 @@ export const Status = styled.section`
         font-weight: 400;
         font-size: 23px;
         line-height: 29px;
-        color: ${c.darkImp};
+        color: ${({theme}) => theme.principalTextColor};
     }
 `;
 export const Text = styled.p`
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: ${({didSomething}) => didSomething ? c.concludedColor : c.dkColor };
+    color: ${({didSomething, theme}) => didSomething ? theme.concludedColor : theme.lowUse };
 `;
 export const Content = styled.section`
     width: 100%;
@@ -48,7 +47,7 @@ export const CardContainer = styled.article`
     min-height: 94px;
     padding: 10px;
     border-radius: 5px;
-    background-color: ${c.cardColor};
+    background-color: ${({theme}) => theme.cardBgColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,24 +63,23 @@ export const CardInfos = styled.div`
         font-weight: 400;
         font-size: 20px;
         line-height: 25px;
-        color: ${c.dkTextColor};
+        color: ${({theme}) => theme.principalTextColor};
         margin-bottom: 7px;
     }
     p{
         font-weight: 400;
         font-size: 13px;
         line-height: 16px;
-        color: ${c.dkTextColor};
+        color: ${({theme}) => theme.lowUse};
     }
 `;
 export const Span = styled.span`
-    color: ${({biggerThan}) => biggerThan ? c.concludedColor : c.dkTextColor};
+    color: ${({biggerThan, theme}) => biggerThan ? theme.concludedColor : theme.lowUse};
 `
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
     width: 50px;
     height: 50px;
-    color: ${({done}) => done === "true" ? c.concludedColor : c.dkColor };
-    border: 1px solid #E7E7E7;
+    color: ${({done, theme}) => done === "true" ? theme.concludedColor : theme.lowUse };
     border-radius: 15px;
     cursor: pointer;
 `;

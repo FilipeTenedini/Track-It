@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { c } from "../../constants/colors";
 
 export const MyButton = styled.button`
     width: 80%;
     max-width: 303px;
     height: 45px;
-    background-color: ${c.lightImp};
+    background-color: ${({theme}) => theme.secondTextColor};
     border-radius: 5px;
     outline: none;
     border: none;
@@ -14,16 +13,14 @@ export const MyButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    color: ${c.lightColor};
+    color: ${({theme}) => theme.btnTextColor};
     font-size: 21px;
     transition: .3s;
 
         &:hover{
-            /* transform: scale(1.1); */
-            background-color: ${c.darkImp};
-            /* opacity: .9;  */
+            background-color: ${({theme}) => theme.principalTextColor};
         }
         &:active{
-            background-color: ${c.lightImp}
+            background-color: ${({theme}) => theme.secondTextColor};
         }
 `;

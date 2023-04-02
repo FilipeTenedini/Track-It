@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { c } from "../../constants/colors";
 
 export const FormArea = styled.form`
     width: 100%;
@@ -31,7 +30,7 @@ export const Register = styled.a`
         line-height: 17px;
         text-align: center;
         text-decoration: underline;
-        color: ${c.lightImp};
+        color:${({theme}) => theme.secondTextColor};
         cursor: pointer;
         margin-bottom: 35px;
 `;

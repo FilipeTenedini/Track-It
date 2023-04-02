@@ -3,6 +3,9 @@ import ProgressBar from "./ProgressBar";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
+
+
+
     return (
       <Container>
         <button>

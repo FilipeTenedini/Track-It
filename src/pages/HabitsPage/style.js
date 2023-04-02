@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { MdAddBox } from "react-icons/md";
 import { BsTrash3 } from "react-icons/bs";
-import { c } from "../../constants/colors";
 import { slideBottom, slideTop } from "../../constants/animations";
 
 export const Container = styled.main`
@@ -12,7 +11,7 @@ export const Container = styled.main`
     align-items: center;
     margin-top: 70px;
     margin-bottom: 70px;
-    background-color: ${c.midColor};
+    background-color: ${({theme}) => theme.backgroundColor};
     overflow-y: scroll;
 `;
 export const Status = styled.section`
@@ -26,21 +25,21 @@ export const Status = styled.section`
         font-weight: 400;
         font-size: 23px;
         line-height: 29px;
-        color: ${c.darkImp};
+        color: ${({theme}) => theme.principalTextColor};
     }
 `;
 export const AddBox = styled(MdAddBox)`
     width: 40px;
     height: 35px;
-    color: ${c.lightImp};
+    color: ${({theme}) => theme.secondTextColor};
     margin-right: 18px;
     cursor: pointer;
     transition: .4s;
     &:hover{
-        color: ${c.darkImp};
+        color: ${({theme}) => theme.principalTextColor};
     }
     &:active{
-        color: ${c.lightImp};
+        color: ${({theme}) => theme.secondTextColor};
     }
 `;
 export const Content = styled.section`
@@ -55,7 +54,7 @@ export const NoneHabitsMsg = styled.p`
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: ${c.dkTextColor};
+    color: ${({theme}) => theme.lowUse};
     text-align: center;
 `
 
@@ -64,7 +63,7 @@ export const HabitFormContainer = styled.article`
     max-width: 340px;
     height: 180px;
     border-radius: 5px;
-    background-color: ${c.cardColor};
+    background-color: ${({theme}) => theme.cardBgColor};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +83,7 @@ export const HabitFormContainer = styled.article`
         padding-left: 11px;
         margin-bottom: 10px;
         outline: none;
-        color: ${c.dkTextColor};
+        color: ${({theme}) => theme.lowUse};
     }
 `;
 export const DaysContainer = styled.div`
@@ -100,10 +99,10 @@ export const Day = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #D5D5D5;
+    border: ${({theme}) => theme.selectedColorDay } 1px solid;
     border-radius: 5px;
-    background-color: ${({selected}) => selected ? c.selectedDay : c.cardColor};
-    color: ${({selected}) => selected ? c.cardColor : c.selectedDay};
+    background-color: ${({selected, theme}) => selected ? theme.selectedColorDay : theme.cardBgColor};
+    color: ${({selected, theme}) => selected ? theme.cardBgColor : theme.selectedColorDay};
     margin-right: 4px;
     font-weight: 400;
     font-size: 20px;
@@ -124,8 +123,8 @@ export const CancelButton = styled.button`
     width: 84px;
     height: 35px;
     border-radius: 5px;
-    background-color: ${c.cardColor};
-    color: ${c.lightImp};
+    background-color: ${({theme}) => theme.cardBgColor};
+    color: ${({theme}) => theme.secondTextColor};
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
@@ -135,18 +134,18 @@ export const CancelButton = styled.button`
     transition: .4s;
     
     &:hover{
-        color: ${c.darkImp};
+        color: ${({theme}) => theme.principalTextColor};
     }
     &:active{
-        color: ${c.lightImp};
+        color: ${({theme}) => theme.secondTextColor};
     }
 `;
 export const SaveButton = styled.button`
     width: 84px;
     height: 35px;
     border-radius: 5px;
-    color: ${c.cardColor};
-    background-color: ${c.lightImp};
+    color: ${({theme}) => theme.cardBgColor};
+    background-color: ${({theme}) => theme.secondTextColor};
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
@@ -156,10 +155,10 @@ export const SaveButton = styled.button`
     margin: 0 16px 0 23px;
     transition: .4s;
     &:hover{
-        background-color: ${c.darkImp};
+        background-color: ${({theme}) => theme.principalTextColor};
     }
     &:active{
-        background-color: ${c.lightImp};
+        background-color: ${({theme}) => theme.secondTextColor};
     }
 `;
 
@@ -169,7 +168,7 @@ export const HabitArea = styled.article`
     min-height: 90px;
     padding: 10px;
     border-radius: 5px;
-    background-color: ${c.cardColor};
+    background-color: ${({theme}) => theme.cardBgColor};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,22 +179,23 @@ export const TextArea = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-left: 15px;
+    padding: 10px;
     justify-content: center;
     p{
         max-width: 90%;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
-        color: ${c.dkTextColor};
-        margin-bottom: 8px;
+        color: ${({theme}) => theme.lowUse};
+        margin-bottom: 18px;
     }
 `;
 export const TrashIcon = styled(BsTrash3)`
     position: absolute;
-    top: 11px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
     width: 15px;
     height: 15px;
+    color: ${({theme}) => theme.trashIcon};
 `;

@@ -1,28 +1,20 @@
-import { useState, useMemo } from 'react';
-import { ThemeProvider } from 'styled-components';
+import { useContext } from 'react';
 import AuthProvider from './context/AuthContext';
 import ConcludedsProvider from './context/ConcludedsContext';
+import { ThemeProvider } from 'styled-components';
+import { ThemeContext } from "./context/ThemeContext";
 import MyRoutes from './MyRoutes';
-import themes from "./style/Themes/";
 
 export default function App() {
-  const [theme, setTheme] = useState('light');
-
-  const currentTheme = useMemo( () => {
-    return themes[theme];
-  }, [theme])
-
-  function handleToggleTheme() {
-    setTheme(prevState => prevState === "light" ? "dark" : "light")
-  }
+  const { currentTheme } = useContext(ThemeContext);
   
   return (
-    <ConcludedsProvider>
-      <AuthProvider>
-        <ThemeProvider theme={currentTheme}>
-          <MyRoutes />
-        </ThemeProvider>
-      </AuthProvider>
-    </ConcludedsProvider>
+    <AuthProvider>
+      <ConcludedsProvider>
+          <ThemeProvider theme={currentTheme}>
+            <MyRoutes />
+          </ThemeProvider>
+      </ConcludedsProvider>
+    </AuthProvider>
   );
 }

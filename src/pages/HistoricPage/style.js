@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
-import { c } from "../../constants/colors";
 
 export const Container = styled.section`
     width: 100%;
@@ -11,7 +10,7 @@ export const Container = styled.section`
     align-items: center;
     margin-top: 70px;
     padding-bottom: 90px;
-    background-color: ${c.midColor};
+    background-color: ${({theme}) => theme.backgroundColor};
     overflow-y: scroll;
 `;
 export const Status = styled.div`
@@ -25,13 +24,14 @@ export const Status = styled.div`
         font-weight: 400;
         font-size: 23px;
         line-height: 29px;
-        color: ${c.darkImp};
+        color: ${({theme}) => theme.principalTextColor};
     }
 `;
 
 export const MyCalendar = styled(Calendar)`
 
     width: calc(100% - 40px);
+    max-width: 420px;
     border-radius: 5px;
     button{
         display: flex;

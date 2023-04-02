@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { c } from "../../constants/colors";
 
 export const Container = styled.header`
     width: 100%;
     height: 70px;
-    background-color: ${c.darkImp};
+    background-color: ${({theme}) => theme.headerBgColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
