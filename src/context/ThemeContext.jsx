@@ -4,7 +4,7 @@ import themes from "../style/Themes";
 export const ThemeContext = createContext();
 
 export default function ThemeProv( { children } ) {
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState('light');
 
     const currentTheme = useMemo( () => {
       return themes[theme];

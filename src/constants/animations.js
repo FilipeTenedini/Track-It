@@ -35,3 +35,6 @@ export const slideTop = keyframes`
     }
 `;
 
+export const slideRight = keyframes`
+
+`

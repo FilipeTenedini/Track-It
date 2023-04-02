@@ -1,4 +1,3 @@
-import { c } from "../../constants/colors";
 import { ThreeCircles } from  'react-loader-spinner'
 
 export default function CheckLoader() {
@@ -7,7 +6,7 @@ export default function CheckLoader() {
         <ThreeCircles
             height="50"
             width="50"
-            color={c.lightImp}
+            color={`${({theme}) => theme.secondTextColor}`}
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}

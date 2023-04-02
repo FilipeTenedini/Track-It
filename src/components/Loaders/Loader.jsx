@@ -1,4 +1,3 @@
-import { c } from "../../constants/colors";
 import { ThreeDots } from  'react-loader-spinner'
 
 export default function Loader() {
@@ -8,7 +7,7 @@ export default function Loader() {
             height="50"
             width="50"
             radius="9"
-            color={`${c.lightColor}`}
+            color={`${({theme}) => theme.btnTextColor}`}
             ariaLabel="three-dots-loading"  
             wrapperStyle={{}}
             wrapperClassName=""

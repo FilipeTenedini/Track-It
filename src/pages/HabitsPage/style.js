@@ -13,6 +13,19 @@ export const Container = styled.main`
     margin-bottom: 70px;
     background-color: ${({theme}) => theme.backgroundColor};
     overflow-y: scroll;
+
+    &&::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &&::-webkit-scrollbar-track {
+        background: ${({theme}) => theme.backgroundColor};
+    }
+
+    &&::-webkit-scrollbar-thumb {
+        background-color: ${({theme}) => theme.secondTextColor};
+        border-radius: 9px;
+    }
 `;
 export const Status = styled.section`
     width: 100%;
