@@ -56,8 +56,7 @@ export const NoneHabitsMsg = styled.p`
     line-height: 22px;
     color: ${({theme}) => theme.lowUse};
     text-align: center;
-`
-
+`;
 export const HabitFormContainer = styled.article`
     width: 90%;
     max-width: 340px;
@@ -74,7 +73,7 @@ export const HabitFormContainer = styled.article`
 	        animation: ${({closingForm}) => closingForm ? slideTop : slideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 
-    input{
+    input {
         width: 90%;
         max-width: 303px;
         height: 45px;
@@ -161,7 +160,6 @@ export const SaveButton = styled.button`
         background-color: ${({theme}) => theme.secondTextColor};
     }
 `;
-
 export const HabitArea = styled.article`
     width: 90%;
     max-width: 340px;

@@ -4,6 +4,7 @@ export default {
     bgColor: "#E5E5E5",
     cardBgColor: "#FFF",
     cardTitleColor:"#BABABA",
+    selectedColorDay: "#CFCFCF",
     principalTextColor: "#126BA5",
     secondTextColor: "#52B6FF",
     subtitleColor: "#BABABA",
@@ -12,5 +13,7 @@ export default {
     btnTextColor: "#FFF",
     backgroundColor: "#E5E5E5",
     lowUse: "#666",
-    trashIcon: "#000"
+    trashIcon: "#000",
+    noChecked: "#CFCFCF",
+
 }

@@ -79,7 +79,7 @@ export const Span = styled.span`
 export const MyCheckBox = styled(BsFillCheckSquareFill)`
     width: 50px;
     height: 50px;
-    color: ${({done, theme}) => done === "true" ? theme.concludedColor : theme.lowUse };
+    color: ${({done, theme}) => done === "true" ? theme.concludedColor : theme.noChecked };
     border-radius: 15px;
     cursor: pointer;
 `;

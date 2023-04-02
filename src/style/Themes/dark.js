@@ -14,4 +14,5 @@ export default {
     backgroundColor: "#333",
     lowUse: "#ccc",
     trashIcon: "#FFF",
+    noChecked: "#CFCFCF",
 }
