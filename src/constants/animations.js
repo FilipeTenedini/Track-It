@@ -34,7 +34,3 @@ export const slideTop = keyframes`
                 opacity: 0;
     }
 `;
-
-export const slideRight = keyframes`
-
-`

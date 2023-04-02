@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../api/url";
 import { AuthContext } from "../../context/AuthContext";
-import { Container, Status, MyCalendar } from "./style";
+import { Container, Status, MyCalendar, LoaderArea} from "./style";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
 import Loader from "../../components/Loaders/Loader";
@@ -54,7 +54,9 @@ export default function HistoricPage() {
       <Header />
       <Container>
      {loading
-     ? <Loader />
+      ? <LoaderArea>
+          <Loader />
+        </LoaderArea>
      : <>
           <Status>
             <h2>Histórico</h2>

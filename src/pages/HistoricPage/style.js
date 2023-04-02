@@ -47,4 +47,7 @@ export const MyCalendar = styled(Calendar)`
             padding: 5px;
         }
     }
-`
+`;
+export const LoaderArea = styled.div`
+    margin-top: 130px;
+`;
