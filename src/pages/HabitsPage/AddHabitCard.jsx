@@ -12,7 +12,7 @@ export default function AddHabitCard({savedData, setSavedData, setCreating, getH
     const [isDisabled, setIsDisabled] = useState(false);
     const [closingForm, setClosingForm] = useState(false)
     const {auth} = useContext(AuthContext);
-
+    console.log(savedData);
     function selectDay(id) {
         selectedDays.includes(id)
             ? setSelectedDays((prevState) => prevState.filter(item => item !== id))
@@ -41,8 +41,8 @@ export default function AddHabitCard({savedData, setSavedData, setCreating, getH
     function handleCloseForm() {
         setClosingForm(true);
         setSavedData({
-            title: habitTitle,
-            days: selectedDays
+            title: '',
+            days: ''
         });
 
         const time = setTimeout(() => {
